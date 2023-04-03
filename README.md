@@ -8,7 +8,7 @@
 
 ## Get started
 ```bash
-git clone https://github.com/IMZolin/frt23-3d-front.git
+git clone https://github.com/IMZolin/frt23-3d-front.git <your project name>
 cd <your project name>
 npm install 
 npm install --force # (if prev step doesn't work) 
