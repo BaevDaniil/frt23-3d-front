@@ -1,3 +1,10 @@
+export function toggle(JSX, state){
+    return (
+      <div>
+        {state? JSX: null}
+      </div>);
+  }
+
 export function toggle_between_jsx(JSX_1,JSX_2, state){
     return (
         <div>
