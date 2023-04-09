@@ -5,7 +5,7 @@ import './header.css';
 import { Button } from '@material-ui/core';
 import IconButton from '@mui/material/IconButton';
 import UserAvatar from '../../../shared/ui/Avatar/index.js';
-import { ReactComponent as Logo } from '../../../shared/assets/svg/header/logo.svg';
+import LogoImage from '../../../shared/assets/png/header/logo.png';
 import { ReactComponent as Message } from '../../../shared/assets/svg/header/message.svg';
 import { ReactComponent as Post } from '../../../shared/assets/svg/header/postadd.svg';
 import { ReactComponent as Login } from '../../../shared/assets/svg/header/login.svg';
@@ -37,36 +37,43 @@ const Header = () => {
           variant="outlined"
           className="signout"
         >
-          Выйти
+          Sign out
         </Button>
       </>
     ) : (
-      <IconButton onClick={() => setOpen_Entry(true)}>
-        <Login className="entry" />
-      </IconButton>
+      <div></div>
     );
   };
   return (
     <>
       <div className="header">
-        <div className="header__logo" onClick={() => navigate('/')}>
-          <Logo width="70%" />
+        <div className="header__logo" onClick={() => navigate('/main')}>
+          <img src={LogoImage} alt="Logo" className='logo-image'/>
         </div>
         <div className="header__wrapper">
           {isAuthorized() && (
             <>
-              <IconButton onClick={() => navigate('/im')}>
-                <Message className="message" />
-              </IconButton>
-              <IconButton onClick={() => navigate('/create_ad')}>
-                <Post className="post" />
-              </IconButton>
               <IconButton onClick={() => navigate('/favourite')}>
                 <Love className="love" />
               </IconButton>
             </>
           )}
-          {getProfileIcon()}
+          <div onClick={() => navigate('/profile')} className="avatar">
+          <UserAvatar
+            width="35px"
+            height="35px"
+            avatar={''}
+            onClick={() => navigate('/profile')}
+          />
+        </div>
+        <Button
+          onClick={() => setAxiosToken(null)}
+          color="secondary"
+          variant="outlined"
+          className="signout"
+        >
+          Sign out
+        </Button>
         </div>
       </div>
       {open_Entry && (

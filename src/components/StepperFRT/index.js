@@ -75,11 +75,14 @@ const StepperFRT = () => {
     return(
     <div>
         {activeStep === steps.length ? (
-            <Typography variant="h3" align="center">
+            <Typography variant="h4" align="center">
                 Loading...
             </Typography>
         ) : (
             <>
+            <Typography variant="h4" align="center">
+                Deconvolution
+            </Typography>
                 <form>{getStepContent(activeStep)}</form>
                 <Button disabled={activeStep === 0} onClick={handleBack}>
                     Back

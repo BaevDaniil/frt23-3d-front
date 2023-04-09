@@ -1,0 +1,12 @@
+form {
+  display: flex,
+}
+
+h2{
+  text-align: center;
+}
+
+form{
+  max-width: 50%;
+  text-align: center;
+}
