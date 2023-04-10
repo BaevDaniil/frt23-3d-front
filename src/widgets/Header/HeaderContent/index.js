@@ -51,13 +51,9 @@ const Header = () => {
           <img src={LogoImage} alt="Logo" className='logo-image'/>
         </div>
         <div className="header__wrapper">
-          {isAuthorized() && (
-            <>
-              <IconButton onClick={() => navigate('/favourite')}>
-                <Love className="love" />
-              </IconButton>
-            </>
-          )}
+          <IconButton onClick={() => navigate('/favourite')}>
+            <Love className="love" />
+          </IconButton>
           <div onClick={() => navigate('/profile')} className="avatar">
           <UserAvatar
             width="35px"

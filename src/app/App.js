@@ -1,10 +1,12 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import MainPage from '../pages/main';
-import LoginPage from '../pages/Login';
-import SignupPage from '../pages/Signup';
+import FavouritePage from '../pages/Favourite';
+import PersonalPage from '../pages/Profile';
+import LoginPage from '../pages/Auth/Login';
+import SignupPage from '../pages/Auth/Signup';
 import Header from '../widgets/Header/HeaderContent';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 const App = () => {
     return (
         <>
@@ -13,6 +15,8 @@ const App = () => {
                 <Route path="/main" element={<MainPage />} />
                 <Route path="/" element={<LoginPage />} />
                 <Route path="/signup" element={<SignupPage />} />
+                <Route path="/profile" element={<PersonalPage />} />
+                <Route path="/favourite" element={<FavouritePage />} />
             </Routes>
         </>
     );

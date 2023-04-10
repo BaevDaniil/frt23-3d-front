@@ -7,8 +7,8 @@ const CenteredTabs = () => {
   return (
     <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
       <>
-        <Tab label="Профиль" />
-        <Tab label="Объявления" />
+        <Tab label="Profile" />
+        <Tab label="Favourites" />
       </>
     </Box>
   );

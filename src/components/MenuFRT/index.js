@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {Typography } from "@mui/material";
-import StepperFRT from "../StepperFRT";
+import StepperDeconvolution from "../StepperFRT/StepperDeconvolution";
+import StepperNetwork from "../StepperFRT/StepperNetwork";
 import './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -25,9 +26,9 @@ const MenuFRT = () => {
         </button>
       ) : (
         <div>
-          <Typography variant="h4" align="center" className="menu-header">
+          <h2 variant="h4" align="center" className="menu-header">
             Menu
-          </Typography>
+          </h2>
           <div style={{ display: "flex", justifyContent: "center" }} className="menu-container">
             <button
               variant="contained"
@@ -50,12 +51,8 @@ const MenuFRT = () => {
           </div>
         </div>
       )}
-      {selectedOption === "Deconvolution" && <StepperFRT />}
-      {selectedOption === "Neural Networks" && (
-        <Typography variant="h5" align="center">
-          Coming soon...
-        </Typography>
-      )}
+      {selectedOption === "Deconvolution" && <StepperDeconvolution />}
+      {selectedOption === "Neural Networks" && <StepperNetwork />}
     </div>
   );
 };
