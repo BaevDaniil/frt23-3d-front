@@ -1,9 +1,9 @@
 import { useState } from "react";
-import {Typography } from "@mui/material";
+import {Button } from "@mui/material";
 import StepperDeconvolution from "../StepperFRT/StepperDeconvolution";
 import StepperNetwork from "../StepperFRT/StepperNetwork";
 import './style.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 const MenuFRT = () => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -11,48 +11,40 @@ const MenuFRT = () => {
   const handleOptionClick = (option) => {
     setSelectedOption(option);
   };
+  const handleBackClick = () => {
+    setSelectedOption("");
+  };
 
   return (
     <div>
-      {selectedOption ? (
-        <button
-          variant="contained"
-          color="primary"
-          type="button" 
-          class="btn btn-outline-danger"
-          onClick={() => setSelectedOption("")}
-        >
-          Back
-        </button>
-      ) : (
+      {selectedOption === "" && (
         <div>
           <h2 variant="h4" align="center" className="menu-header">
             Menu
           </h2>
           <div style={{ display: "flex", justifyContent: "center" }} className="menu-container">
-            <button
-              variant="contained"
-              color="primary"
-              type="button" 
-              class="btn btn-outline-primary"
+            <Button
+              variant="outlined"
+              // type="button" 
+              className="menu-options"
               onClick={() => handleOptionClick("Deconvolution")}
             >
               Deconvolution
-            </button>
-            <button
-            type="button"
-            class="btn btn-outline-secondary"
-              variant="contained"
-              color="primary"
+            </Button>
+            <Button
+              // type="button"
+              className="menu-options"
+              variant="outlined"
+              color="success"
               onClick={() => handleOptionClick("Neural Networks")}
             >
               Neural Networks
-            </button>
+            </Button>
           </div>
         </div>
       )}
-      {selectedOption === "Deconvolution" && <StepperDeconvolution />}
-      {selectedOption === "Neural Networks" && <StepperNetwork />}
+      {selectedOption === "Deconvolution" && <StepperDeconvolution handleBackClick={handleBackClick}/>}
+      {selectedOption === "Neural Networks" && <StepperNetwork handleBackClick={handleBackClick}/>}
     </div>
   );
 };

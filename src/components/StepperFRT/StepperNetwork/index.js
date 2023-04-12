@@ -1,10 +1,10 @@
 import {useState} from "react";
-import {Button, Step, StepLabel, Stepper, TextField, Typography} from "@mui/material";
 import {DropzoneAreaBase} from "material-ui-dropzone";
 import {show_images} from "../../../hooks/showImages";
 import StepperFRT from '../../StepperFRT';
+import '../stepper.css'
 
-const StepperNetwork = () => {
+const StepperNetwork = ({handleBackClick}) => {
     const [files, addFiles] = useState([]);
     const [activeStep, setActiveStep] = useState(0);
     const steps = ['Load image', 'Preprocessing', 'Model selection & Deconvolution', 'Save results'];
@@ -82,26 +82,16 @@ const StepperNetwork = () => {
     }
     return(
     <div>
-        {activeStep === steps.length ? (
-            <Typography variant="h4" align="center">
-                Loading...
-            </Typography>
-        ) : (
-            <>
-            <h2 variant="h4" align="center">
-                Neural Networks
-            </h2>
-                <form>{getStepContent(activeStep)}</form>
-                <StepperFRT
+        <StepperFRT
+                    name="Deconvolution"
+                    stepContent={getStepContent}
                     steps={steps}
                     handleNextStep={activeStep === steps.length - 1 ? completedFun : handleNextStep}
                     handlePrevStep={handlePrevStep}
                     activeStep={activeStep}
                     files={files}
-            />
-            </>
-        )}
-        
+                    handleBackClick={handleBackClick}
+        />
     </div>
     );
 };

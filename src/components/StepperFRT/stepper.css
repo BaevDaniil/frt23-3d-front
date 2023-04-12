@@ -1,0 +1,17 @@
+.stepper{
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
+.stepper-container{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.btn-back{
+    margin-left: 5%;
+    max-width: 150px;
+}

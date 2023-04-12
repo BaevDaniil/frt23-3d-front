@@ -4,7 +4,7 @@ import {DropzoneAreaBase} from "material-ui-dropzone";
 import {show_images} from "../../../hooks/showImages";
 import StepperFRT from '../../StepperFRT';
 import 'bootstrap/dist/css/bootstrap.min.css';
-const StepperDeconvolution = () => {
+const StepperDeconvolution = ({handleBackClick}) => {
     const [files, addFiles] = useState([]);
     const [activeStep, setActiveStep] = useState(0);
     const steps = ['Load image', 'Preprocessing', 'Model selection & Deconvolution', 'Save results'];
@@ -27,21 +27,26 @@ const StepperDeconvolution = () => {
             case 0:
                 return (
                     <>
+                    
                         <DropzoneAreaBase
-                            fileObjects={files}
-                            showPreviewsInDropzone={true}
-                            useChipsForPreview
-                            onAdd={(newFile) => {
-                                newFile[0].id = Math.floor(Math.random() * 10000);
-                                console.log(newFile);
-                                addFiles((prevFiles) => [...prevFiles, newFile[0]]);
-                            }}
-                            onDelete={(delFile) => {
-                                addFiles((prevFiles) =>
-                                    prevFiles.filter((file) => file.id !== delFile.id),
-                                );
-                            }}
-                        />
+                        
+                        fileObjects={files}
+                        showPreviewsInDropzone={true}
+                        useChipsForPreview
+                        onAdd={(newFile) => {
+                            newFile[0].id = Math.floor(Math.random() * 10000);
+                            console.log(newFile);
+                            addFiles((prevFiles) => [...prevFiles, newFile[0]]);
+                        }}
+                        onDelete={(delFile) => {
+                            addFiles((prevFiles) =>
+                                prevFiles.filter((file) => file.id !== delFile.id),
+                            );
+                        }}
+                        acceptedFiles={['.tif']}
+                    />
+                        
+
                     </>
                 );
             case 1:
@@ -82,25 +87,16 @@ const StepperDeconvolution = () => {
     }
     return(
     <div>
-        {activeStep === steps.length ? (
-            <Typography variant="h4" align="center">
-                Loading...
-            </Typography>
-        ) : (
-            <>
-            <h2 variant="h4" align="center">
-                Deconvolution
-            </h2>
-                <form>{getStepContent(activeStep)}</form>
-                <StepperFRT
+        <StepperFRT
+                    name="Deconvolution"
+                    stepContent={getStepContent}
                     steps={steps}
                     handleNextStep={activeStep === steps.length - 1 ? completedFun : handleNextStep}
                     handlePrevStep={handlePrevStep}
                     activeStep={activeStep}
                     files={files}
-                />
-            </>
-        )}
+                    handleBackClick={handleBackClick}
+        />
     </div>
     );
 };

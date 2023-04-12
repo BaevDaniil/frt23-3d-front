@@ -22,10 +22,10 @@
     margin-bottom: 20px;
   }
   
-  .menu-option {
-    margin: 0 10px;
+  .menu-options + .menu-options {
+    margin-top: 10px;
   }
   
-  .btn {
-    margin-bottom: 10px;
+  .btn-menu {
+    margin-bottom: 20px;
   }
