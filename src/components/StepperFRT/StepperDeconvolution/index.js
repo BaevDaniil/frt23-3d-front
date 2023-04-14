@@ -1,14 +1,17 @@
 import {useState} from "react";
 import {Button, Step, StepLabel, Stepper, TextField, Typography} from "@mui/material";
+import { TIFFViewer } from "react-tiff";
 import {DropzoneAreaBase} from "material-ui-dropzone";
 import {show_images} from "../../../hooks/showImages";
 import StepperFRT from '../../StepperFRT';
+import tifFile from "../../../../src/Avr1s_px50_r_200_0nm.tif";
+import "react-tiff/dist/index.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 const StepperDeconvolution = ({handleBackClick}) => {
     const [files, addFiles] = useState([]);
     const [activeStep, setActiveStep] = useState(0);
     const steps = ['Load image', 'Preprocessing', 'Model selection & Deconvolution', 'Save results'];
-  
+    const [currentPage, setCurrentPage] = useState(0);
     const handleNextStep = () => {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
     };
@@ -21,6 +24,11 @@ const StepperDeconvolution = ({handleBackClick}) => {
       console.log('Completed');
       handleNextStep();
     };
+
+    const handlePageChange = (pageIndex, e) => {
+        e.preventDefault();
+        setCurrentPage(pageIndex);
+      };
   
     function getStepContent(step) {
         switch (step) {
@@ -43,20 +51,23 @@ const StepperDeconvolution = ({handleBackClick}) => {
                                 prevFiles.filter((file) => file.id !== delFile.id),
                             );
                         }}
-                        acceptedFiles={['.tif']}
+                        acceptedFiles={['.tif', '.tiff']}
                     />
                         
 
                     </>
                 );
             case 1:
+                console.log(files)
                 return (
                     <>
-                        <div className="images__preview">
-                            {files.map((file) => (
-                                show_images(<img src={file.data} />, <img src={file.data} />)
-                            ))}
-                        </div>
+                        <TIFFViewer tiff={tifFile} 
+                        lang="en" // en | de | fr | es | tr
+                        paginate="bottom" // bottom | ltr
+                        // buttonColor="#141414"
+                        currentPage={currentPage}
+                        onPageChange={handlePageChange}
+                        />
                     </>
                 );
 
@@ -66,7 +77,7 @@ const StepperDeconvolution = ({handleBackClick}) => {
                     <>
                         <div className="images__preview">
                             {files.map((file) => (
-                                show_images(<img src={file.data} />, <img src={file.data} />)
+                                show_images(<TIFFViewer tiff={file} />, <TIFFViewer tiff={file} />)
                             ))}
                         </div>
                     </>
@@ -76,7 +87,7 @@ const StepperDeconvolution = ({handleBackClick}) => {
                         <>
                             <div className="images__preview">
                                 {files.map((file) => (
-                                    show_images(<img src={file.data} />, <img src={file.data} />)
+                                    show_images(<TIFFViewer tiff={file} />, <TIFFViewer tiff={file} />)
                                 ))}
                             </div>
                         </>
