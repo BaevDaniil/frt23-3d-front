@@ -16,14 +16,18 @@ export function toggle_between_jsx(JSX_1,JSX_2, state){
 export function show_images(img_1,img_2){
     return (
       <div>
-        <deiv>
+        <div>
           Before:
-          <TIFFViewer tif={img_1} />
-        </deiv>
+          <TIFFViewer key={img_1.id} tiff={img_1.data} />
+        </div>
         <div>
           After:
-          <TIFFViewer tif={img_2} />
+          <TIFFViewer key={img_2.id} tiff={img_2.data} />
         </div>
       </div>
     );
   }
+
+
+
+  

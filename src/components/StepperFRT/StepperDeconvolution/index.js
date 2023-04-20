@@ -1,12 +1,14 @@
 import {useState} from "react";
 import {Button, Step, StepLabel, Stepper, TextField, Typography} from "@mui/material";
-import { TIFFViewer } from "react-tiff";
 import {DropzoneAreaBase} from "material-ui-dropzone";
 import {show_images} from "../../../hooks/showImages";
 import StepperFRT from '../../StepperFRT';
-import tifFile from "../../../../src/Avr1s_px50_r_200_0nm.tif";
-import "react-tiff/dist/index.css";
+import TifCompare from '../TifCompare';
+// import tifFile from "../../../../src/Avr1s_px50_r_200_0nm.tif";
+// import "react-tiff/dist/index.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 const StepperDeconvolution = ({handleBackClick}) => {
     const [files, addFiles] = useState([]);
     const [activeStep, setActiveStep] = useState(0);
@@ -61,13 +63,12 @@ const StepperDeconvolution = ({handleBackClick}) => {
                 console.log(files)
                 return (
                     <>
-                        <TIFFViewer tiff={tifFile} 
-                        lang="en" // en | de | fr | es | tr
-                        paginate="bottom" // bottom | ltr
-                        // buttonColor="#141414"
-                        currentPage={currentPage}
-                        onPageChange={handlePageChange}
-                        />
+                        <div className="images__preview">
+                            {files.map((file) => (
+                                <TifCompare img_1={file} img_2={file}/>
+                            ))}
+                        </div>
+                        {/* <TifViewer imageSource={tifFile}/> */}
                     </>
                 );
 
@@ -77,7 +78,7 @@ const StepperDeconvolution = ({handleBackClick}) => {
                     <>
                         <div className="images__preview">
                             {files.map((file) => (
-                                show_images(<TIFFViewer tiff={file} />, <TIFFViewer tiff={file} />)
+                                <TifCompare img_1={file} img_2={file}/>
                             ))}
                         </div>
                     </>
@@ -86,9 +87,9 @@ const StepperDeconvolution = ({handleBackClick}) => {
                     return (
                         <>
                             <div className="images__preview">
-                                {files.map((file) => (
-                                    show_images(<TIFFViewer tiff={file} />, <TIFFViewer tiff={file} />)
-                                ))}
+                            {files.map((file) => (
+                                <TifCompare img_1={file} img_2={file}/>
+                            ))}
                             </div>
                         </>
                     );

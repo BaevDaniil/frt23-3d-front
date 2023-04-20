@@ -83,7 +83,7 @@ const StepperNetwork = ({handleBackClick}) => {
     return(
     <div>
         <StepperFRT
-                    name="Deconvolution"
+                    name="Neural Networks"
                     stepContent={getStepContent}
                     steps={steps}
                     handleNextStep={activeStep === steps.length - 1 ? completedFun : handleNextStep}
